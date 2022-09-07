@@ -4,13 +4,21 @@ import Meme from './Meme';
 import './Main.css';
 
 function Main() {
-  const [randomIndex, setRandomIndex] = useState(0);
-  const [memeText, setMemeText] = useState({ topText: 'top', bottomText: 'bottom' });
+  const [picIndex, setPicIndex] = useState(0);
+  const [memeText, setMemeText] = useState({ topText: '', bottomText: '' });
 
   const { memes } = useAPI();
 
-  const handleRandomIndex = () => {
-    setRandomIndex(Math.floor(Math.random() * memes.length));
+  const handleNextPicture = () => {
+    setPicIndex(picIndex + 1);
+  };
+
+  const handlePrevPicture = () => {
+    setPicIndex(picIndex - 1);
+  };
+
+  const handleRandomPicture = () => {
+    setPicIndex(Math.floor(Math.random() * memes.length));
   };
 
   return (
@@ -32,8 +40,12 @@ function Main() {
           value={memeText.bottomText ?? ''}
         />
       </form>
-      <button className='rnd-button btn' onClick={handleRandomIndex}>Random Picture</button>
-      {memes && <Meme memes={memes} randomIndex={randomIndex} memeText={memeText} />}
+      {memes && <div className='button-container'>
+        <button className='prev-button' onClick={handlePrevPicture} disabled={picIndex === 0}>Previous Picture</button>
+        <button className='rnd-button' onClick={handleRandomPicture}>Random Picture</button>
+        <button className='next-button' onClick={handleNextPicture} disabled={picIndex === memes.length - 1}>Next Picture</button>
+      </div>}
+      {memes && <Meme memes={memes} picIndex={picIndex} memeText={memeText} />}
     </div>
   );
 }
