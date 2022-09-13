@@ -21,24 +21,34 @@ function Main() {
     setPicIndex(Math.floor(Math.random() * memes.length));
   };
 
+  //--------- TEXT LOGIC ----------//
+  const handleChange = event => {
+    event.preventDefault();
+    setMemeText({
+      topText: event.target.topText.value,
+      bottomText: event.target.bottomText.value
+    });
+    event.target.topText.value = '';
+    event.target.bottomText.value = '';
+  };
+
   return (
     <div className='main-container'>
       <h1>Meme Generator</h1>
-      <form className='form-container'>
-        <label htmlFor="top-text">Enter Top Text</label>
+      <form className='form-container' onSubmit={handleChange}>
+        <label htmlFor="topText">Enter Top Text</label>
         <input
           type="text"
-          id='top-text'
-          name='top-text'
-          value={memeText.topText ?? ''}
+          id='topText'
+          name='topText'
         />
-        <label htmlFor="bottom-text">Enter Bottom Text</label>
+        <label htmlFor="bottomText">Enter Bottom Text</label>
         <input
           type="text"
-          id='bottom-text'
-          name='bottom-text'
-          value={memeText.bottomText ?? ''}
+          id='bottomText'
+          name='bottomText'
         />
+        <button type='submit'>Submit</button>
       </form>
       {memes && <div className='button-container'>
         <button className='prev-button' onClick={handlePrevPicture} disabled={picIndex === 0}>Previous Picture</button>
