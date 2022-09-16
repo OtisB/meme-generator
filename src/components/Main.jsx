@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import useAPI from './useAPI';
 import Meme from './Meme';
+import MemeTextForm from './MemeTextForm';
 import './Main.css';
 
 function Main() {
@@ -35,21 +36,7 @@ function Main() {
   return (
     <div className='main-container'>
       <h1>Meme Generator</h1>
-      <form className='form-container' onSubmit={handleChange}>
-        <label htmlFor="topText">Top Text</label>
-        <input
-          type="text"
-          id='topText'
-          name='topText'
-        />
-        <label htmlFor="bottomText">Bottom Text</label>
-        <input
-          type="text"
-          id='bottomText'
-          name='bottomText'
-        />
-        <button type='submit'>Submit</button>
-      </form>
+      <MemeTextForm handleChange={handleChange} />
       {memes && <div className='button-container'>
         <button className='prev-button' onClick={handlePrevPicture} disabled={picIndex === 0}>Previous Picture</button>
         <button className='rnd-button' onClick={handleRandomPicture}>Random Picture</button>
