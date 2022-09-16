@@ -36,13 +36,13 @@ function Main() {
     <div className='main-container'>
       <h1>Meme Generator</h1>
       <form className='form-container' onSubmit={handleChange}>
-        <label htmlFor="topText">Enter Top Text</label>
+        <label htmlFor="topText">Top Text</label>
         <input
           type="text"
           id='topText'
           name='topText'
         />
-        <label htmlFor="bottomText">Enter Bottom Text</label>
+        <label htmlFor="bottomText">Bottom Text</label>
         <input
           type="text"
           id='bottomText'
