@@ -51,7 +51,10 @@ function Main() {
         <button className='next-button' onClick={handleNextPicture} disabled={picIndex === memes.length - 1}>Next Picture</button>
       </div>}
       {/*acceept works for (IE 10+, Edge (EdgeHTML), Edge (Chromium), Chrome, Firefox 42+) */}
-      <input type="file" name="fileUpload" id="fileUpload" onChange={handlePictureUpload} accept=".jpeg,.jpg, .png" />
+      <label htmlFor="file-upload" className="custom-file-upload">
+        Upload own picture
+      </label>
+      <input type="file" id="file-upload" onChange={handlePictureUpload} accept=".jpeg,.jpg, .png" />
       {memes && <Meme
         memes={memes}
         picIndex={picIndex}
