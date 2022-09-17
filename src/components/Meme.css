@@ -12,12 +12,12 @@
   border: 2px solid black;
   width: 500px;
   height: 500px;
-  object-fit: contain;
+  object-fit: fit;
 }
 
 .meme-text {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-size: 2rem;
+  font-size: 3rem;
   color: white;
   -webkit-text-stroke: 1px black;
   position: absolute;
