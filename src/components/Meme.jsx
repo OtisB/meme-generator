@@ -1,8 +1,8 @@
 import './Meme.css';
-function Meme({ memes, picIndex, memeText, customPic }) {
+function Meme({ memes, picIndex, memeText, customPic, memeReference }) {
 
   return (
-    <div className="meme-container">
+    <div className="meme-container" ref={memeReference}>
       <h2 className='meme-text top'>{memeText.topText}</h2>
       {memes.length ? (<img
         className='meme-picture'
