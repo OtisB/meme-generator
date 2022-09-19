@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import domtoimage from 'dom-to-image';
 import useAPI from './useAPI';
 import Meme from './Meme';
 import MemeTextForm from './MemeTextForm';
@@ -10,6 +11,9 @@ function Main() {
   const [customPic, setCustomPic] = useState(null);
   const { memes } = useAPI();
 
+  const memeReference = useRef(null);
+
+  //--------- PICTURE LOGIC ----------//
   const handleNextPicture = () => {
     setPicIndex(picIndex + 1);
   };
@@ -22,12 +26,22 @@ function Main() {
     setPicIndex(Math.floor(Math.random() * memes.length));
   };
 
+  //--------- UPLOAD LOGIC ----------//
   const handlePictureUpload = (event) => {
     const { files } = event.target;
     const { name } = files[0];
     const url = URL.createObjectURL(files[0]); //static method
     //console.log(url);
     setCustomPic({ name, url });
+  };
+
+  //--------- DOWNLOAD LOGIC ----------//
+  const handleDownload = async () => {
+    const dataUrl = await domtoimage.toJpeg(memeReference.current, { quality: 0.95 });
+    const link = document.createElement('a');
+    link.download = `my-meme-${Date.now()}.jpeg`;
+    link.href = dataUrl;
+    link.click();
   };
 
   //--------- TEXT LOGIC ----------//
@@ -61,7 +75,9 @@ function Main() {
         picIndex={picIndex}
         memeText={memeText}
         customPic={customPic}
+        memeReference={memeReference}
       />}
+      <button onClick={handleDownload}>Download</button>
     </div>
   );
 }
