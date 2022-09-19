@@ -46,6 +46,7 @@ function Main() {
       <h1>Meme Generator</h1>
       <MemeTextForm handleChange={handleChange} />
       {memes && <div className='button-container'>
+        {/* TODO: change disable functionality */}
         <button className='prev-button' onClick={handlePrevPicture} disabled={picIndex === 0}>Previous Picture</button>
         <button className='rnd-button' onClick={handleRandomPicture}>Random Picture</button>
         <button className='next-button' onClick={handleNextPicture} disabled={picIndex === memes.length - 1}>Next Picture</button>
