@@ -55,6 +55,13 @@ function Main() {
     event.target.bottomText.value = '';
   };
 
+  //--------- RESET LOGIC ----------//
+  const handleClear = () => {
+    setMemeText({});
+    setCustomPic(null);
+    setPicIndex(0);
+  };
+
   return (
     <div className='main-container'>
       <h1>Meme Generator</h1>
@@ -77,7 +84,10 @@ function Main() {
         customPic={customPic}
         memeReference={memeReference}
       />}
-      <button onClick={handleDownload}>Download</button>
+      {memes && <div className='button-container'>
+        <button onClick={handleDownload}>Download</button>
+        <button onClick={handleClear}>Clear all</button>
+      </div>}
     </div>
   );
 }
