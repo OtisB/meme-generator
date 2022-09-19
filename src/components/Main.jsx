@@ -46,12 +46,16 @@ function Main() {
       <h1>Meme Generator</h1>
       <MemeTextForm handleChange={handleChange} />
       {memes && <div className='button-container'>
+        {/* TODO: change disable functionality */}
         <button className='prev-button' onClick={handlePrevPicture} disabled={picIndex === 0}>Previous Picture</button>
         <button className='rnd-button' onClick={handleRandomPicture}>Random Picture</button>
         <button className='next-button' onClick={handleNextPicture} disabled={picIndex === memes.length - 1}>Next Picture</button>
       </div>}
       {/*acceept works for (IE 10+, Edge (EdgeHTML), Edge (Chromium), Chrome, Firefox 42+) */}
-      <input type="file" name="fileUpload" id="fileUpload" onChange={handlePictureUpload} accept=".jpeg,.jpg, .png" />
+      <label htmlFor="file-upload" className="custom-file-upload">
+        Upload own picture
+      </label>
+      <input type="file" id="file-upload" onChange={handlePictureUpload} accept=".jpeg,.jpg, .png" />
       {memes && <Meme
         memes={memes}
         picIndex={picIndex}

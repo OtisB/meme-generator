@@ -2,7 +2,7 @@ import './Meme.css';
 function Meme({ memes, picIndex, memeText, customPic }) {
 
   return (
-    <div className="meme">
+    <div className="meme-container">
       <h2 className='meme-text top'>{memeText.topText}</h2>
       {memes.length ? (<img
         className='meme-picture'
